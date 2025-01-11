@@ -11,3 +11,7 @@ except ValueError as e:
     print(e)
 
 print("PLEASEEEEEEEE")
+
+emma = ""
+if emma == 'furry':
+    print('jo is happy')
