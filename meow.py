@@ -9,3 +9,5 @@ try:
         raise ValueError('WRONG')
 except ValueError as e:
     print(e)
+
+print("PLEASEEEEEEEE")
