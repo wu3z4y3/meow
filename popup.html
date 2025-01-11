@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Camera Control</title>
+  <title>Camera Streamer</title>
+  <style>
+    body { margin: 0; display: flex; justify-content: center; align-items: center; height: 100%; }
+    video { width: 100px; height: 100px;  transform: scaleX(-1)}
+  </style>
 </head>
 <body>
-    <h1>Camera is ready!</h1>
-    <div id="camera"></div>
-    <button id="close">Close Camera</button>
-    <script src="popup.js"></script>
+  <video id="camera" autoplay playsinline></video>
+  <script src="popup.js"></script>
 </body>
 </html>
