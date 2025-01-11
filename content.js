@@ -33,13 +33,13 @@ navigator.mediaDevices.getUserMedia({ video: true })
 
     // Add an image overlay
     const image = document.createElement('img');
-    image.src = chrome.runtime.getURL('images/coolios.jpg'); // Replace with your image path
+    image.src = chrome.runtime.getURL('images/coolios.jpg');
     image.style.position = 'absolute';
-    image.style.bottom = '20px'; // Adjust position relative to container
-    image.style.right = '20px'; // Adjust position relative to container
+    image.style.top = '20px'; // Adjust position relative to container
+    image.style.left = '20px'; // Adjust position relative to container
     image.style.width = '150px'; // Set the image size
     image.style.height = '150px'; // Set the image size
-    image.style.borderRadius = '50%'; // Example: Make the image circular
+
     image.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.4)';
 
     // Add the image to the container
@@ -71,6 +71,3 @@ navigator.mediaDevices.getUserMedia({ video: true })
   .catch(function (error) {
     console.log('Error accessing the camera:', error);
   });
-
-
-  
