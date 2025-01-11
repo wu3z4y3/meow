@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Camera Streamer</title>
-  <style>
-    body { margin: 0; display: flex; justify-content: center; align-items: center; height: 100%; }
-    video { width: 100px; height: 100px;  transform: scaleX(-1)}
-  </style>
+    <title>Website Blocker</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        #blocked-list { margin-top: 10px; }
+        .block-item { margin: 5px 0; display: flex; justify-content: space-between; }
+    </style>
 </head>
 <body>
-  <video id="camera" autoplay playsinline></video>
-  <script src="popup.js"></script>
+    <h1>Block Websites</h1>
+    <input id="website-input" type="text" placeholder="Enter website (e.g., example.com)" />
+    <button id="add-website">Add</button>
+    <h3>Blocked Websites:</h3>
+    <div id="blocked-list"></div>
+    <script src="popup.js"></script>
 </body>
 </html>
