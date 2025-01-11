@@ -6,10 +6,12 @@
     "activeTab",
     "tabs",
     "webNavigation",
-    "scripting"
+    "scripting",
+    "storage"
   ],
   "host_permissions": [
-    "https://www.instagram.com/*" 
+    "http://*/*",
+    "https://*/*"
   ],
   "background": {
     "service_worker": "background.js"

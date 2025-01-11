@@ -1,30 +1,37 @@
-const video = document.getElementById("camera");
-
-async function startCamera() {
-  try {
-    console.log("Requesting camera access...");
-    const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-    console.log("Camera stream obtained:", stream);
-
-    // Attach the stream to the video element
-    video.srcObject = stream;
-    video.play();
-  } catch (error) {
-    console.error("Error accessing camera:", error);
-    if (error.name === "NotAllowedError") {
-      alert("Permission to access the camera was denied.");
-    } else if (error.name === "NotFoundError") {
-      alert("No camera device found.");
-    } else if (error.name === "NotReadableError") {
-      alert("Camera is already in use by another application.");
-    } else {
-      alert("An unknown error occurred.");
-    }
-  }
-}
-
-// Start the camera when the popup loads
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("Popup loaded, starting camera...");
-  startCamera();
+  const websiteInput = document.getElementById("website-input");
+  const addButton = document.getElementById("add-website");
+  const websiteListDiv = document.getElementById("website-list");
+
+  // Load existing websites from chrome.storage.local
+  chrome.storage.local.get('websites', (result) => {
+    const savedWebsites = result.websites || [];
+    displayWebsites(savedWebsites);
+  });
+
+  addButton.addEventListener('click', () => {
+    const website = websiteInput.value.trim();
+    if (!website) return;
+
+    chrome.storage.local.get('websites', (result) => {
+      const savedWebsites = result.websites || [];
+      if (!savedWebsites.includes(website)) {
+        savedWebsites.push(website);
+        chrome.storage.local.set({ websites: savedWebsites }, () => {
+          displayWebsites(savedWebsites);
+          websiteInput.value = ''; // Clear input
+        });
+      }
+    });
+  });
+
+  function displayWebsites(websites) {
+    websiteListDiv.innerHTML = '';
+    websites.forEach((website) => {
+      const div = document.createElement('div');
+      div.classList.add('website-item');
+      div.textContent = website;
+      websiteListDiv.appendChild(div);
+    });
+  }
 });
