@@ -104,7 +104,7 @@ chrome.storage.local.get("motivationalText", (result) => {
 
       lemmeRotButton.addEventListener("click", () => {
         // Replace the motivational text with a random phrase
-        const phrases = ["a", "b", "c"];
+        const phrases = ["ARE YOU DUCKING ME? If you say so... but you can bet your bill I'll be back!", "QUACK QUACK GO BACK", "HONK GEESE HONK HONK How much more time will you spend in this sad lump?", "Honk Quack Lackity Dack, don't let slack be your trademark Joe or Jack!"];
         const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
         textElement.textContent = randomPhrase;
 
