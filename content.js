@@ -76,11 +76,11 @@ chrome.storage.local.get("motivationalText", (result) => {
       container.appendChild(buttonsContainer);
 
       const lockedInButton = document.createElement("button");
-      lockedInButton.textContent = "Locked In";
+      lockedInButton.textContent = "Locking In";
       lockedInButton.style.padding = "10px 20px";
       lockedInButton.style.fontSize = "16px";
       lockedInButton.style.color = "white";
-      lockedInButton.style.backgroundColor = "green";
+      lockedInButton.style.backgroundColor = "#77a77e";
       lockedInButton.style.border = "none";
       lockedInButton.style.borderRadius = "8px";
       lockedInButton.style.cursor = "pointer";
@@ -91,11 +91,11 @@ chrome.storage.local.get("motivationalText", (result) => {
       buttonsContainer.appendChild(lockedInButton);
 
       const lemmeRotButton = document.createElement("button");
-      lemmeRotButton.textContent = "Lemme Rot";
+      lemmeRotButton.textContent = "Duck You";
       lemmeRotButton.style.padding = "10px 20px";
       lemmeRotButton.style.fontSize = "16px";
       lemmeRotButton.style.color = "white";
-      lemmeRotButton.style.backgroundColor = "red";
+      lemmeRotButton.style.backgroundColor = "#77a77e";
       lemmeRotButton.style.border = "none";
       lemmeRotButton.style.borderRadius = "8px";
       lemmeRotButton.style.cursor = "pointer";
