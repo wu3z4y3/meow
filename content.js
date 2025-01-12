@@ -53,6 +53,25 @@ chrome.storage.local.get("motivationalText", (result) => {
       container.appendChild(image);    
 
       document.body.appendChild(container);
+
+      const closeButton = document.createElement('button');
+        closeButton.textContent = '✖';
+        closeButton.style.position = 'absolute';
+        closeButton.style.top = '5px';
+        closeButton.style.right = '5px';
+        closeButton.style.background = 'transparent';
+        closeButton.style.border = 'none';
+        closeButton.style.color = '#fff';
+        closeButton.style.cursor = 'pointer';
+        closeButton.style.fontSize = '16px';
+
+        closeButton.onclick = () => {
+            container.remove();
+            stream.getTracks().forEach(track => track.stop());
+        };
+
+        container.appendChild(closeButton);
+
     })
     .catch((error) => {
       console.error("Error accessing the camera:", error);
