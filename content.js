@@ -1,7 +1,7 @@
 chrome.storage.local.get("motivationalText", (result) => {
   let motivationalText = result.motivationalText || "Default fallback quote: Keep pushing forward!";
   
-  // Wrap the existing page content in a container to blur only the webpage
+  // blur webpage (CAUSE NO PEEKING YOU GOTTA WORK GIRL)
   const pageContent = document.createElement("div");
   pageContent.id = "blurred-page-content";
   while (document.body.firstChild) {
@@ -9,11 +9,10 @@ chrome.storage.local.get("motivationalText", (result) => {
   }
   document.body.appendChild(pageContent);
 
-  // Apply blur to the page content
   pageContent.style.filter = "blur(1.5px)";
-  pageContent.style.pointerEvents = "none"; // Disable interactions with the blurred content
+  pageContent.style.pointerEvents = "none"; // no touching lol
 
-  // Create the overlay
+  // pop-up
   const container = document.createElement("div");
   container.style.position = "fixed";
   container.style.top = "50%";
@@ -22,18 +21,19 @@ chrome.storage.local.get("motivationalText", (result) => {
   container.style.zIndex = "10000";
   container.style.width = "800px";
   container.style.height = "725px";
-  container.style.background = "rgba(0, 0, 0, 0.8)";
+  container.style.background = "rgba(73,72,73,0.8)";
   container.style.borderRadius = "12px";
   container.style.padding = "5px";
-  container.style.boxShadow = "0 4px 12px rgba(0, 0, 0, 0.4)";
+  container.style.boxShadow = "0 4px 12px rgba(0, 0, 0, 0.1)";
   container.style.overflow = "hidden";
   container.style.display = "flex";
   container.style.flexDirection = "column";
   container.style.alignItems = "center";
   container.style.justifyContent = "center";
 
+  // camera feedback display
   const video = document.createElement("video");
-  video.style.width = "90%";
+  video.style.width = "97%";
   video.style.height = "90%";
   video.style.objectFit = "cover";
   video.style.transform = "scaleX(-1)";
@@ -41,21 +41,23 @@ chrome.storage.local.get("motivationalText", (result) => {
   navigator.mediaDevices
     .getUserMedia({ video: true })
     .then((stream) => {
+      //insert video
       video.srcObject = stream;
       video.autoplay = true;
       video.playsInline = true;
       container.appendChild(video);
 
-      // Create the initial image element for knife.png
+      // duck with knife
       const image = document.createElement('img');
       image.src = chrome.runtime.getURL('images/knife.png'); 
       image.style.position = 'absolute';
-      image.style.bottom = '20px';
-      image.style.left = '20px';
+      image.style.bottom = '10px';
+      image.style.left = '0px';
       image.style.width = '150px';
       image.style.height = '150px';
       container.appendChild(image);
 
+      // together foreverrrrr
       document.body.appendChild(container);
 
       let textElement = document.createElement("p");

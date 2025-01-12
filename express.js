@@ -18,7 +18,7 @@ const genAI = new GoogleGenerativeAI(process.env.API_KEY);
 
 // Function to generate motivational text
 async function generateMotivationalText() {
-  const prompt = "Generate a short motivational quote.";
+  const prompt = "Generate a simple, short and creative message, encouraging one to be productive, as if you are a duck. 20 words maximum";
   try {
     const model = genAI.getGenerativeModel({ model: "gemini-pro" });
     const result = await model.generateContent(prompt);
