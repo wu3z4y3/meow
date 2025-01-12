@@ -34,10 +34,10 @@ chrome.storage.local.get("motivationalText", (result) => {
       container.appendChild(video);
 
       const image = document.createElement('img');
-      image.src = chrome.runtime.getURL('images/pepe.png'); 
+      image.src = chrome.runtime.getURL('images/knife.png'); 
       image.style.position = 'absolute';
       image.style.bottom = '20px';
-      image.style.right = '20px';
+      image.style.left = '20px';
       image.style.width = '150px';
       image.style.height = '150px';
       container.appendChild(image);    

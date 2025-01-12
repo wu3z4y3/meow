@@ -27,7 +27,7 @@
   },
   "web_accessible_resources": [
     {
-      "resources": ["images/pepe.png"],
+      "resources": ["images/knife.png"],
       "matches": ["<all_urls>"]
     }
   ]
