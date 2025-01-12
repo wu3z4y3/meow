@@ -1,14 +1,27 @@
 chrome.storage.local.get("motivationalText", (result) => {
   let motivationalText = result.motivationalText || "Default fallback quote: Keep pushing forward!";
   
+  // Wrap the existing page content in a container to blur only the webpage
+  const pageContent = document.createElement("div");
+  pageContent.id = "blurred-page-content";
+  while (document.body.firstChild) {
+    pageContent.appendChild(document.body.firstChild);
+  }
+  document.body.appendChild(pageContent);
+
+  // Apply blur to the page content
+  pageContent.style.filter = "blur(1.5px)";
+  pageContent.style.pointerEvents = "none"; // Disable interactions with the blurred content
+
+  // Create the overlay
   const container = document.createElement("div");
   container.style.position = "fixed";
   container.style.top = "50%";
   container.style.left = "50%";
   container.style.transform = "translate(-50%, -50%)";
   container.style.zIndex = "10000";
-  container.style.width = "900px";
-  container.style.height = "700px";
+  container.style.width = "800px";
+  container.style.height = "725px";
   container.style.background = "rgba(0, 0, 0, 0.8)";
   container.style.borderRadius = "12px";
   container.style.padding = "5px";
@@ -33,6 +46,7 @@ chrome.storage.local.get("motivationalText", (result) => {
       video.playsInline = true;
       container.appendChild(video);
 
+      // Create the initial image element for knife.png
       const image = document.createElement('img');
       image.src = chrome.runtime.getURL('images/knife.png'); 
       image.style.position = 'absolute';
@@ -40,10 +54,11 @@ chrome.storage.local.get("motivationalText", (result) => {
       image.style.left = '20px';
       image.style.width = '150px';
       image.style.height = '150px';
-      container.appendChild(image);    
+      container.appendChild(image);
+
       document.body.appendChild(container);
 
-      const textElement = document.createElement("p");
+      let textElement = document.createElement("p");
       textElement.textContent = motivationalText;
       textElement.style.color = "white";
       textElement.style.fontSize = "18px";
@@ -84,10 +99,30 @@ chrome.storage.local.get("motivationalText", (result) => {
       lemmeRotButton.style.border = "none";
       lemmeRotButton.style.borderRadius = "8px";
       lemmeRotButton.style.cursor = "pointer";
+
       lemmeRotButton.addEventListener("click", () => {
-        document.body.removeChild(container);
-        stream.getTracks().forEach((track) => track.stop());
+        // Replace the motivational text with a random phrase
+        const phrases = ["a", "b", "c"];
+        const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
+        textElement.textContent = randomPhrase;
+
+        // Replace the image with angry.png
+        image.src = chrome.runtime.getURL('images/coolios.jpg');
+
+        // Remove the buttons
+        buttonsContainer.style.display = "none";
+
+        // Automatically close the overlay after 5 seconds
+        setTimeout(() => {
+          document.body.removeChild(container); // Remove the overlay
+          document.body.removeChild(pageContent); // Restore the original page content
+          while (pageContent.firstChild) {
+            document.body.appendChild(pageContent.firstChild);
+          }
+          stream.getTracks().forEach((track) => track.stop()); // Stop the camera feed
+        }, 5000);
       });
+
       buttonsContainer.appendChild(lemmeRotButton);
 
       document.body.appendChild(container);
