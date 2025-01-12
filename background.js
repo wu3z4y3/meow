@@ -16,3 +16,16 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     });
   }
 });
+
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  if (request.action === "getMotivationalText") {
+    fetch(chrome.runtime.getURL("motivationalText.json"))
+      .then((response) => {
+        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+        return response.json();
+      })
+      .then((data) => sendResponse({ success: true, text: data.text }))
+      .catch((error) => sendResponse({ success: false, error: error.message }));
+    return true; // Keep the message channel open for asynchronous response
+  }
+});
