@@ -27,7 +27,7 @@
   },
   "web_accessible_resources": [
     {
-      "resources": ["images/knife.png", "images/coolios.jpg"],
+      "resources": ["images/knife.png", "images/coolios.jpg", "images/honkhonk.gif"],
       "matches": ["<all_urls>"]
     }
   ]

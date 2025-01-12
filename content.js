@@ -109,7 +109,9 @@ chrome.storage.local.get("motivationalText", (result) => {
         textElement.textContent = randomPhrase;
 
         // Replace the image with angry.png
-        image.src = chrome.runtime.getURL('images/coolios.jpg');
+        image.src = chrome.runtime.getURL('images/honkhonk.gif');
+        image.style.width = '275px';
+        image.style.height = '150px';
 
         // Remove the buttons
         buttonsContainer.style.display = "none";
