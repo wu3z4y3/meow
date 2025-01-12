@@ -1,5 +1,5 @@
 chrome.storage.local.get("motivationalText", (result) => {
-  let motivationalText = result.motivationalText || "Default fallback quote: Keep pushing forward!";
+  let motivationalText = result.motivationalText || "Quacky quack! Time to tackle our to-do list like a duck in water!";
   
   // blur webpage (CAUSE NO PEEKING YOU GOTTA WORK GIRL)
   const pageContent = document.createElement("div");
@@ -47,14 +47,15 @@ chrome.storage.local.get("motivationalText", (result) => {
       video.playsInline = true;
       container.appendChild(video);
 
-      // duck with knife
+      // honking goose character at start 
       const image = document.createElement('img');
-      image.src = chrome.runtime.getURL('images/knife.png'); 
+      image.src = chrome.runtime.getURL('images/honk.gif'); 
       image.style.position = 'absolute';
       image.style.bottom = '10px';
       image.style.left = '0px';
       image.style.width = '150px';
       image.style.height = '150px';
+      image.style.transform = "scaleX(-1)";
       container.appendChild(image);
 
       // together foreverrrrr
@@ -62,9 +63,14 @@ chrome.storage.local.get("motivationalText", (result) => {
 
       let textElement = document.createElement("p");
       textElement.textContent = motivationalText;
+      textElement.style.fontFamily = "Tahoma, sans-serif";
+      textElement.style.position = "absolute";
+      textElement.style.bottom = "100px";
+      textElement.style.left = "150px";
+      textElement.style.width = "600px";
       textElement.style.color = "white";
       textElement.style.fontSize = "18px";
-      textElement.style.background = "rgba(0, 0, 0, 0.5)";
+      textElement.style.background = "#F28F32";
       textElement.style.padding = "10px";
       textElement.style.borderRadius = "8px";
       textElement.style.marginTop = "10px";
@@ -74,11 +80,14 @@ chrome.storage.local.get("motivationalText", (result) => {
       buttonsContainer.style.position = "absolute";
       buttonsContainer.style.bottom = "20px";
       buttonsContainer.style.display = "flex";
-      buttonsContainer.style.gap = "20px";
+      buttonsContainer.style.gap = "110px";
       container.appendChild(buttonsContainer);
 
       const lockedInButton = document.createElement("button");
-      lockedInButton.textContent = "Locking In";
+      lockedInButton.textContent = "Locking In 🔒";
+      lockedInButton.style.fontFamily = "Tahoma, sans-serif";
+      lockedInButton.style.width = "200px";
+      lockedInButton.style.height = "60px";
       lockedInButton.style.padding = "10px 20px";
       lockedInButton.style.fontSize = "16px";
       lockedInButton.style.color = "white";
@@ -92,8 +101,18 @@ chrome.storage.local.get("motivationalText", (result) => {
       });
       buttonsContainer.appendChild(lockedInButton);
 
+      lockedInButton.addEventListener("mouseover", () => {
+        lockedInButton.style.backgroundColor = "#527657"; 
+      });
+      lockedInButton.addEventListener("mouseout", () => {
+        lockedInButton.style.backgroundColor = "#77a77e";
+      });
+
       const lemmeRotButton = document.createElement("button");
-      lemmeRotButton.textContent = "Duck You";
+      lemmeRotButton.textContent = "Duck You 🪿";
+      lemmeRotButton.style.fontFamily = "Tahoma, sans-serif";
+      lemmeRotButton.style.width = "200px";
+      lemmeRotButton.style.height = "60px";
       lemmeRotButton.style.padding = "10px 20px";
       lemmeRotButton.style.fontSize = "16px";
       lemmeRotButton.style.color = "white";
@@ -101,6 +120,13 @@ chrome.storage.local.get("motivationalText", (result) => {
       lemmeRotButton.style.border = "none";
       lemmeRotButton.style.borderRadius = "8px";
       lemmeRotButton.style.cursor = "pointer";
+
+      lemmeRotButton.addEventListener("mouseover", () => {
+        lemmeRotButton.style.backgroundColor = "#527657";
+      });
+      lemmeRotButton.addEventListener("mouseout", () => {
+        lemmeRotButton.style.backgroundColor = "#77a77e";
+      });
 
       lemmeRotButton.addEventListener("click", () => {
         // Replace the motivational text with a random phrase
@@ -110,6 +136,7 @@ chrome.storage.local.get("motivationalText", (result) => {
 
         // Replace the image with angry.png
         image.src = chrome.runtime.getURL('images/honkhonk.gif');
+        image.style.position = 'absolute';
         image.style.width = '275px';
         image.style.height = '150px';
 

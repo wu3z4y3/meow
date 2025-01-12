@@ -31,7 +31,7 @@ async function generateMotivationalText() {
     return motivationalText;
   } catch (error) {
     console.error("Error generating motivational text:", error);
-    return "Default motivational text: Keep pushing forward!";
+    return "Quacky quack! Time to tackle our to-do list like a duck in water!";
   }
 }
 
