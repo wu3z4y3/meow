@@ -3,13 +3,71 @@
 <head>
     <title>Website Blocker</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        #website-list { margin-top: 10px; }
-        .website-item { margin: 5px 0; display: flex; justify-content: space-between; }
+        body { 
+            font-family: Tahoma, sans-serif; 
+            margin: 20px; 
+            width: 100vw;
+            height: 80vh;
+            padding: 20px;
+            box-sizing: border-box;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        #website-input {
+            width: 575px;
+            padding: 10px;
+            margin-bottom: 10px;
+            font-size: 16px;
+            align-self: center;
+            border-radius: 5px; 
+        }
+
+        #add-website {
+            width: 600px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #77a77e; /* Green background */
+            color: white; /* White text */
+            border: none; /* Remove border */
+            border-radius: 5px; /* Rounded corners */
+        }
+
+        #add-website:hover {
+            background-color: #527657;
+        }
+
+        h1 {
+            font-size: 24px;
+            text-align: left;
+        }
+
+        h2 {
+            font-size: 10px;
+            text-align: left;
+        }
+
+        h3 {
+            font-size: 18px;
+        }
+
+        #website-list { 
+            margin-top: 20px; 
+        }
+
+        .website-item { 
+            margin: 5px 0; 
+            display: flex; 
+            justify-content: space-between; 
+            font-size: 16px;
+        }
     </style>
 </head>
 <body>
-    <h1>Enable Camera for Websites</h1>
+    <h2> ! Remember to allow camera permissions !</h2>
+    <h1> Enter Website to Block: </h1>
     <input id="website-input" type="text" placeholder="Enter website (e.g., example.com)" />
     <button id="add-website">Add</button>
     <h3>Websites with Camera Access:</h3>
