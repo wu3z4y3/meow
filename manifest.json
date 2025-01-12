@@ -20,14 +20,14 @@
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
-      "16": "images/gooseicon.png",
-      "48": "images/gooseicon.png",
-      "128": "images/gooseicon.png"
+      "16": "images/ourface.png",
+      "48": "images/ourface.png",
+      "128": "images/ourface.png"
     }
   },
   "web_accessible_resources": [
     {
-      "resources": ["images/knife.png", "images/coolios.jpg", "images/honkhonk.gif", "images/honk.gif"],
+      "resources": ["images/knife.png", "images/coolios.jpg", "images/honkhonk.gif", "images/honk.gif", "images/ourface.png"],
       "matches": ["<all_urls>"]
     }
   ]
