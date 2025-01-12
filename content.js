@@ -1,14 +1,6 @@
-// content.js
-chrome.runtime.sendMessage({ action: "getMotivationalText" }, (response) => {
-  let motivationalText = "Default fallback quote: Keep pushing forward!";
-  if (response.success) {
-    motivationalText = response.text;
-    console.log("Motivational text loaded:", motivationalText);
-  } else {
-    console.error("Error fetching motivational text:", response.error);
-  }
-
-  // Display the text
+chrome.storage.local.get("motivationalText", (result) => {
+  let motivationalText = result.motivationalText || "Default fallback quote: Keep pushing forward!";
+  
   const container = document.createElement("div");
   container.style.position = "fixed";
   container.style.top = "50%";
