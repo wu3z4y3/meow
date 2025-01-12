@@ -33,6 +33,16 @@ chrome.storage.local.get("motivationalText", (result) => {
       video.playsInline = true;
       container.appendChild(video);
 
+      const image = document.createElement('img');
+      image.src = chrome.runtime.getURL('images/pepe.png'); 
+      image.style.position = 'absolute';
+      image.style.bottom = '20px';
+      image.style.right = '20px';
+      image.style.width = '150px';
+      image.style.height = '150px';
+      container.appendChild(image);    
+      document.body.appendChild(container);
+
       const textElement = document.createElement("p");
       textElement.textContent = motivationalText;
       textElement.style.color = "white";
@@ -43,35 +53,44 @@ chrome.storage.local.get("motivationalText", (result) => {
       textElement.style.marginTop = "10px";
       container.appendChild(textElement);
 
-      const image = document.createElement('img');
-      image.src = chrome.runtime.getURL('images/coolios.jpg'); 
-      image.style.position = 'absolute';
-      image.style.bottom = '20px';
-      image.style.right = '20px';
-      image.style.width = '150px';
-      image.style.height = '150px';
-      container.appendChild(image);    
+      const buttonsContainer = document.createElement("div");
+      buttonsContainer.style.position = "absolute";
+      buttonsContainer.style.bottom = "20px";
+      buttonsContainer.style.display = "flex";
+      buttonsContainer.style.gap = "20px";
+      container.appendChild(buttonsContainer);
+
+      const lockedInButton = document.createElement("button");
+      lockedInButton.textContent = "Locked In";
+      lockedInButton.style.padding = "10px 20px";
+      lockedInButton.style.fontSize = "16px";
+      lockedInButton.style.color = "white";
+      lockedInButton.style.backgroundColor = "green";
+      lockedInButton.style.border = "none";
+      lockedInButton.style.borderRadius = "8px";
+      lockedInButton.style.cursor = "pointer";
+
+      lockedInButton.addEventListener("click", () => {
+        chrome.runtime.sendMessage({ action: "closeTab" });
+      });
+      buttonsContainer.appendChild(lockedInButton);
+
+      const lemmeRotButton = document.createElement("button");
+      lemmeRotButton.textContent = "Lemme Rot";
+      lemmeRotButton.style.padding = "10px 20px";
+      lemmeRotButton.style.fontSize = "16px";
+      lemmeRotButton.style.color = "white";
+      lemmeRotButton.style.backgroundColor = "red";
+      lemmeRotButton.style.border = "none";
+      lemmeRotButton.style.borderRadius = "8px";
+      lemmeRotButton.style.cursor = "pointer";
+      lemmeRotButton.addEventListener("click", () => {
+        document.body.removeChild(container);
+        stream.getTracks().forEach((track) => track.stop());
+      });
+      buttonsContainer.appendChild(lemmeRotButton);
 
       document.body.appendChild(container);
-
-      const closeButton = document.createElement('button');
-        closeButton.textContent = '✖';
-        closeButton.style.position = 'absolute';
-        closeButton.style.top = '5px';
-        closeButton.style.right = '5px';
-        closeButton.style.background = 'transparent';
-        closeButton.style.border = 'none';
-        closeButton.style.color = '#fff';
-        closeButton.style.cursor = 'pointer';
-        closeButton.style.fontSize = '16px';
-
-        closeButton.onclick = () => {
-            container.remove();
-            stream.getTracks().forEach(track => track.stop());
-        };
-
-        container.appendChild(closeButton);
-
     })
     .catch((error) => {
       console.error("Error accessing the camera:", error);

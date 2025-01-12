@@ -27,7 +27,7 @@
   },
   "web_accessible_resources": [
     {
-      "resources": ["images/coolios.jpg"],
+      "resources": ["images/pepe.png"],
       "matches": ["<all_urls>"]
     }
   ]

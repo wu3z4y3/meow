@@ -24,3 +24,19 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     });
   }
 });
+
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  if (request.action === "closeTab") {
+    if (sender.tab && sender.tab.id) {
+      chrome.tabs.remove(sender.tab.id, () => {
+        if (chrome.runtime.lastError) {
+          console.error("Error closing tab:", chrome.runtime.lastError.message);
+        } else {
+          console.log("Tab closed successfully.");
+        }
+      });
+    } else {
+      console.error("No valid tab ID to close.");
+    }
+  }
+});
